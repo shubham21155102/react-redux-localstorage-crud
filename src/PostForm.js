@@ -110,73 +110,82 @@ class PostForm extends Component {
           <form
             onSubmit={this.handleSubmit}
             style={{ backgroundColor: "white", width: "100%" }}
-          >
+          > 
+            <label>Name</label>
             <input
               ref={(input) => (this.getName = input)}
               required
               type="text"
-              placeholder="Name"
+              placeholder="Enter Name"
             />
             <br />
             <br />
+            <label>Email</label>
             <input
               ref={(input) => (this.getEmail = input)}
               required
               type="email"
-              placeholder="Email"
+              placeholder="Enter Email"
             />
             <br />
             <br />
+            <label>Phone</label>
             <input
               ref={(input) => (this.getPhone = input)}
               required
               type="tel"
-              placeholder="Phone"
+              placeholder="Enter Phone Number"
             />
             <br />
             <br />
-            <input
+            <label>Address</label>
+            <textarea
               ref={(input) => (this.getAddress = input)}
+              style={{width:"100%",marginBottom:"10px"}}
               required
               type="text"
-              placeholder="Address"
+              placeholder="Enter Address"
             />
             <br />
             <br />
+            <label>Street Address</label>
             <input
               ref={(input) => (this.getStreetAddress = input)}
               required
               type="text"
-              placeholder="Street Address"
+              placeholder="Enter Street Address"
             />
             <br />
             <br />
+            <label>City</label>
             <input
               ref={(input) => (this.getCity = input)}
               required
               type="text"
-              placeholder="City"
+              placeholder="Enter City"
             />
             <br />
             <br />
+            <label>State</label>
             <input
               ref={(input) => (this.getState = input)}
               required
               type="text"
-              placeholder="State"
+              placeholder="Enter State"
             />
             <br />
             <br />
+            <label>Pincode</label>
             <input
               ref={(input) => (this.getPincode = input)}
               required
               type="text"
-              placeholder="Pincode"
+              placeholder="Enter Pincode"
             />
             <br />
             <br />
-           
-            <select ref={(input) => (this.getCountry = input)} required>
+            <label>Country</label>
+            <select ref={(input) => (this.getCountry = input)} required >
               <option value="">Select Country</option>
               <option value="India">India</option>
               <option value="USA">United States</option>
@@ -187,37 +196,66 @@ class PostForm extends Component {
             <br />
             <br />
             <br />
-            <select ref={(input) => (this.getGender = input)} required>
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+
+          <label>Gender</label>
+              <span> 
+                <input
+                  type="radio"
+                  ref={(input) => (this.getGender = input)}
+                  name="gender"
+                  value="male"
+                  required
+                  placeholder="Male"
+                />
+                Male
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  ref={(input) => (this.getGender = input)}
+                  name="gender"
+                  value="female"
+                  required
+                />
+                Female
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  ref={(input) => (this.getGender = input)}
+                  name="gender"
+                  value="other"
+                  required
+                />
+                Other
+              </span>
+            </div>
             <br />
             <br />
-            <div style={{left:"1px"}}>
-              Hobbies:
-              <label>
+            <br />
+            <div>
+            <label>    Hobbies:   </label>
+           
                 <input
                   ref={(input) => (this.getHobbyReading = input)}
                   type="checkbox"
                 />
                 Reading
-              </label>
-              <label>
+           
+             
                 <input
                   ref={(input) => (this.getHobbySports = input)}
                   type="checkbox"
                 />
                 Sports
-              </label>
-              <label>
+             
                 <input
                   ref={(input) => (this.getHobbyMusic = input)}
                   type="checkbox"
                 />
                 Music
-              </label>
+             
             </div>
             <br/>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
