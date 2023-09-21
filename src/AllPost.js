@@ -8,61 +8,21 @@ class AllPost extends Component {
   componentDidMount() {
     // Load data from local storage when the component mounts
     const savedPosts = localStorage.getItem("posts");
-    
-    // Define datas or retrieve it from wherever it should come from
+
+    // Parse the local storage data or initialize as an empty array
+    const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+  
+    // Combine the parsed data with datas
+    const combinedData = [...datas, ...parsedPosts];
+  
+    // Dispatch the combined data to your Redux store or wherever you need it
+    this.props.dispatch({
+      type: "LOAD_POSTS",
+      posts: combinedData
+    });
    
-
-    if (savedPosts) {
-      try {
-        // Parse the local storage data
-        const parsedPosts = JSON.parse(savedPosts);
-
-        // Combine the parsed data with datas
-        const combinedData = [...datas, ...parsedPosts];
-
-        // Dispatch the combined data to your Redux store or wherever you need it
-        this.props.dispatch({
-          type: "LOAD_POSTS",
-          posts: combinedData
-        });
-      } catch (error) {
-        console.error("Error parsing local storage data:", error);
-      }
-    }
+   
   }
-    // const savedPosts = localStorage.getItem("posts");
-    // let x = JSON.parse(savedPosts);
-    // const datas = [
-    //   {
-    //     "id": "3c84d956-6c1c-4b3a-af12-8e3566de1a01",
-    //     "createdAt": "",
-    //     "name": "John Doe",
-    //     "editing":false,
-    //     "email": "johndoe@example.com",
-    //     "phone": "17890",
-    //     "address": "Hii",
-    //     "streetAddress": "123 Main St",
-    //     "city": "New York",
-    //     "state": "NY",
-    //     "pinCode": "10001",
-    //     "country": "USA",
-    //     "gender": "Male",
-    //     "hobbies": ["Reading", "Hiking"]
-    //   }
-    // ];
-
-    // console.log(x[0])
-    // console.log(datas)
-    // if (savedPosts) {
-    //   const parsedPosts = JSON.parse(savedPosts);
-    //   const combinedData = [...parsedPosts, ...datas];
-    //   console.log(combinedData)
-    //   this.props.dispatch({
-    //     type: "LOAD_POSTS",
-    //     posts: JSON.parse(combinedData)
-    //   });
-    // }
-    // console.log(datas)
 
   
 

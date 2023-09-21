@@ -1,3 +1,4 @@
+import datas from "../samples";
 const postReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_POST":
