@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Post from "./Post";
 import EditComponent from "./EditComponent";
-import "./styles/allpost.module.css";
+
+import "./styles/hello.module.css"
 import datas from "./samples";
 
 const AllPost = (props) => {
@@ -27,13 +28,11 @@ const AllPost = (props) => {
 
   return (
     <div
-      style={{
-        position: "absolute",
-        left: 0,
-      }}
+    
     >
-      <h1>Total Items: {totalCount} </h1>
-      <center>
+   <center style={{backgroundColor:"blue",borderRadius:"10px"}}> <h2 className="totalCount" style={{color:"white",fontSize:"20px"}}>Total Items : <span className="total">{totalCount}</span></h2></center>
+     
+     
         <table>
           <thead>
             <tr style={{ backgroundColor: "white" }}>
@@ -83,7 +82,7 @@ const AllPost = (props) => {
             ))}
           </tbody>
         </table>
-      </center>
+     
     </div>
   );
 };

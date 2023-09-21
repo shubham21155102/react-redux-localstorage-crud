@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-import "./styles/main.module.css";
-
+// import "./styles/main.module.css";
+import "./styles/bootstrap.module.css"
+import "./styles/hello.module.css"
 const PostForm = (props) => {
   const [posts, setPosts] = useState([]);
   const getName = useRef(null);
@@ -98,166 +99,142 @@ const PostForm = (props) => {
 
   return (
     <>
-      <h1 style={{ color: "white" }}>Form</h1>
-      <div
-        style={{
-          backgroundColor: "white",
-          width: "100%",
-          borderRadius: "10px",
-          borderWidth: "10px",
-          borderColor: "black",
-        }}
-      >
-        <form
-          onSubmit={handleSubmit}
-          style={{ backgroundColor: "white", width: "100%" }}
+      <h1 style={{ color: "white" }} className="page-title">Form</h1>
+      <section >
+        <div
+          className="container"
+          style={{backgroundColor:"white",maxWidth:"600px",border:"1px solid black",borderRadius:"20px",margin:"30px auto" }}
         >
-          <label>Name</label>
-          <input
-            ref={getName}
-            required
-            type="text"
-            placeholder="Enter Name"
-          />
-          <br />
-          <br />
-          <label>Email</label>
-          <input
-            ref={getEmail}
-            required
-            type="email"
-            placeholder="Enter Email"
-          />
-          <br />
-          <br />
-          <label>Phone</label>
-          <input
-            ref={getPhone}
-            required
-            type="tel"
-            placeholder="Enter Phone Number"
-          />
-          <br />
-          <br />
-          <label>Address</label>
-          <textarea
-            ref={getAddress}
-            style={{ width: "100%", marginBottom: "10px" }}
-            required
-            type="text"
-            placeholder="Enter Address"
-          />
-          <br />
-          <br />
-          <label>Street Address</label>
-          <input
-            ref={getStreetAddress}
-            required
-            type="text"
-            placeholder="Enter Street Address"
-          />
-          <br />
-          <br />
-          <label>City</label>
-          <input
-            ref={getCity}
-            required
-            type="text"
-            placeholder="Enter City"
-          />
-          <br />
-          <br />
-          <label>State</label>
-          <input
-            ref={getState}
-            required
-            type="text"
-            placeholder="Enter State"
-          />
-          <br />
-          <br />
-          <label>Pincode</label>
-          <input
-            ref={getPincode}
-            required
-            type="text"
-            placeholder="Enter Pincode"
-          />
-          <br />
-          <br />
-          <label>Country</label>
-          <select ref={getCountry} required>
-            <option value="">Select Country</option>
-            <option value="India">India</option>
-            <option value="USA">United States</option>
-            <option value="other">Other</option>
-          </select>
+          <form
+            onSubmit={handleSubmit}
+            id="employeeForm"
+            className="needs-validation"
+            style={{textAlign:"left",margin:"25px"}}
+            
+          >
+            <label style={{textAlign:"left"}}>Name</label>
+            <div className="form-group">
 
-          <br />
-          <br />
-          <br />
-          <br />
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <label>Gender</label>
-            <span>
               <input
-                type="radio"
-                ref={getGender}
-                name="gender"
-                value="male"
+                ref={getName}
                 required
+                type="text"
+                placeholder="Enter Name"
+                className="form-control"
               />
-              Male
-            </span>
-            <span>
+
+            </div>
+            <div className="form-group">
+              <label>Email</label>
               <input
-                type="radio"
-                ref={getGender}
-                name="gender"
-                value="female"
+                ref={getEmail}
                 required
-              />
-              Female
-            </span>
-            <span>
+                type="email"
+                placeholder="Enter Email"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>Phone</label>
               <input
-                type="radio"
-                ref={getGender}
-                name="gender"
-                value="other"
+                ref={getPhone}
                 required
-              />
-              Other
-            </span>
-          </div>
-          <br />
-          <br />
-          <br />
-          <div>
-            <label>Hobbies: </label>
-            <input
-              ref={getHobbyReading}
-              type="checkbox"
-            />
-            Reading
-            <input
-              ref={getHobbySports}
-              type="checkbox"
-            />
-            Sports
-            <input
-              ref={getHobbyMusic}
-              type="checkbox"
-            />
-            Music
-          </div>
-          <br />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button onClick={handleReset}>Reset</button>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+                type="tel"
+                placeholder="Enter Phone Number"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>Address</label>
+              <textarea
+                ref={getAddress}
+                style={{ width: "100%", marginBottom: "10px" }}
+                required
+                type="text"
+                placeholder="Enter Address"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>Street Address</label>
+              <input
+                ref={getStreetAddress}
+                required
+                type="text"
+                placeholder="Enter Street Address"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>City</label>
+              <input
+                ref={getCity}
+                required
+                type="text"
+                placeholder="Enter City"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>State</label>
+              <input
+                ref={getState}
+                required
+                type="text"
+                placeholder="Enter State"
+                className="form-control"
+              /></div>
+            <div className="form-group">
+              <label>Pincode</label>
+              <input
+                ref={getPincode}
+                required
+                type="text"
+                placeholder="Enter Pincode"
+                className="form-control"
+              /></div>
+            <label>Country</label>
+
+
+            <div className="form-group">
+              <select ref={getCountry} required className="form-control" id="country">
+                <option value="" >Select Country</option>
+                <option value="India">India</option>
+                <option value="USA">United States</option>
+                <option value="SriLanka">Sri Lanka</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <fieldset className="form-group">
+                <h6 className="form-legend">Gender</h6>
+                <div className="form-check"><input type="radio" name="gender" value="male" id="male" ref={getGender}
+                  className="form-check-input" /><label for="male" className="form-check-label">Male</label>
+                </div>
+                <div className="form-check"><input type="radio" name="gender" value="female" id="female" ref={getGender}
+                  className="form-check-input" /><label for="female" className="form-check-label">Female</label>
+                </div>
+              </fieldset>
+            </div>
+            <div className="form-group">
+                        <fieldset className="form-group">
+                            <h6 className="form-legend">Hobbies</h6>
+                            <div className="form-check"><input type="checkbox" name="hobbies" value="swimming" id="swimming"  ref={getHobbyReading}
+                                    className="form-check-input"/><label for="swimming"
+                                    className="form-check-label">Swimming</label></div>
+                            <div className="form-check"><input type="checkbox" name="hobbies" value="singing" id="singing"  ref={getHobbySports}
+                                    className="form-check-input"/><label for="singing"
+                                    className="form-check-label">Singing</label></div>
+                            <div className="form-check"><input type="checkbox" name="hobbies" value="writing" id="writing"  ref={getHobbyMusic}
+                                    className="form-check-input"/><label for="writing"
+                                    className="form-check-label">Writing</label></div>
+                        </fieldset>
+                    </div>
+                    
+    
+                  
+            <div className="form-group">
+              <button onClick={handleReset} className="form-control btn btn-warning bg-primary text-white" >Reset</button>  </div>
+              <div className="form-group">  <button type="submit" class="form-control btn btn-danger" >Submit</button>
+            </div>
+          </form>
+        </div>
+      </section>
     </>
   );
 };

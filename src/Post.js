@@ -21,10 +21,10 @@ const Post = (props) => {
   return (
     <>
       <button
-        style={{ borderRadius: "10px" }}
+        style={{ borderRadius: "10px" ,backgroundColor: "#007bff"}}
         onClick={handleEditClick}
       >
-        Edit
+        Update
       </button>
       <button
         style={{ borderRadius: "10px", backgroundColor: "red" }}
