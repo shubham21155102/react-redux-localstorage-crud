@@ -1,19 +1,28 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
-class EditComponent extends Component {
-  handleEdit = (e) => {
+
+const EditComponent = (props) => {
+  const getName = useRef(null);
+  const getEmail = useRef(null);
+  const getPhone = useRef(null);
+  const getAddress = useRef(null);
+  const getStreetAddress = useRef(null);
+  const getCity = useRef(null);
+  const getState = useRef(null);
+  const getPincode = useRef(null);
+  const getCountry = useRef(null);
+
+  const handleEdit = (e) => {
     e.preventDefault();
-    const name = this.getName.value;
-    const email = this.getEmail.value;
-    const address = this.getAddress.value;
-    const streetAddress = this.getStreetAddress.value;
-    const phone = this.getPhone.value;
-    const city = this.getCity.value;
-    const state = this.getState.value;
-    const pinCode = this.getPincode.value;
-    const country = this.getCountry.value;
-    // const gender = this.getGender.value;
-    console.log(this)
+    const name = getName.current.value;
+    const email = getEmail.current.value;
+    const address = getAddress.current.value;
+    const streetAddress = getStreetAddress.current.value;
+    const phone = getPhone.current.value;
+    const city = getCity.current.value;
+    const state = getState.current.value;
+    const pinCode = getPincode.current.value;
+    const country = getCountry.current.value;
 
     const data = {
       name,
@@ -25,95 +34,91 @@ class EditComponent extends Component {
       country,
       state,
       pinCode,
-      // gender,
-      editing: false
+      editing: false,
     };
-    console.log(data)
-    this.props.dispatch({ type: "UPDATE", id: this.props.post.id, data });
-    // this.props.dispatch({ type: "UPDATE", id: this.props.post.id, data: data });
+
+    props.dispatch({ type: "UPDATE", id: props.post.id, data });
   };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleEdit}>
-          <input
-            ref={(input) => (this.getName = input)}
-            required
-            type="text"
-            placeholder="Name"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getEmail = input)}
-            required
-            type="email"
-            placeholder="Email"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getPhone = input)}
-            required
-            type="tel"
-            placeholder="Phone"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getAddress = input)}
-            required
-            type="text"
-            placeholder="Address"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getStreetAddress = input)}
-            required
-            type="text"
-            placeholder="Street Address"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getCity = input)}
-            required
-            type="text"
-            placeholder="City"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getState = input)}
-            required
-            type="text"
-            placeholder="State"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getPincode = input)}
-            required
-            type="text"
-            placeholder="Pincode"
-          />
-          <br />
-          <br />
-          <input
-            ref={(input) => (this.getCountry = input)}
-            required
-            type="text"
-            placeholder="Country"
-          />
-          <br />
-          <br />
-          <button>Update</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <form onSubmit={handleEdit}>
+        <input
+          ref={getName}
+          required
+          type="text"
+          placeholder="Name"
+        />
+        <br />
+        <br />
+        <input
+          ref={getEmail}
+          required
+          type="email"
+          placeholder="Email"
+        />
+        <br />
+        <br />
+        <input
+          ref={getPhone}
+          required
+          type="tel"
+          placeholder="Phone"
+        />
+        <br />
+        <br />
+        <input
+          ref={getAddress}
+          required
+          type="text"
+          placeholder="Address"
+        />
+        <br />
+        <br />
+        <input
+          ref={getStreetAddress}
+          required
+          type="text"
+          placeholder="Street Address"
+        />
+        <br />
+        <br />
+        <input
+          ref={getCity}
+          required
+          type="text"
+          placeholder="City"
+        />
+        <br />
+        <br />
+        <input
+          ref={getState}
+          required
+          type="text"
+          placeholder="State"
+        />
+        <br />
+        <br />
+        <input
+          ref={getPincode}
+          required
+          type="text"
+          placeholder="Pincode"
+        />
+        <br />
+        <br />
+        <input
+          ref={getCountry}
+          required
+          type="text"
+          placeholder="Country"
+        />
+        <br />
+        <br />
+        <button>Update</button>
+      </form>
+    </div>
+  );
+};
 
 export default connect()(EditComponent);

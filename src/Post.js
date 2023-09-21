@@ -1,36 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 
-class Post extends Component {
-  render() {
-    return (
-      <>
-       
-        <button
-         style={{ borderRadius: "10px" }}
-          onClick={() =>
-            this.props.dispatch({
-              type: "EDIT_POST",
-              id: this.props.post.id
-            })
-          }
-        >
-          Edit
-        </button>
-        <button
-         style={{ borderRadius: "10px", backgroundColor: "red" }}
-          onClick={() =>
-            this.props.dispatch({
-              type: "DELETE_POST",
-              id: this.props.post.id
-            })
-          }
-        >
-          Delete
-        </button>
-      </>
-    );
-  }
-}
+const Post = (props) => {
+  const dispatch = useDispatch();
 
-export default connect()(Post);
+  const handleEditClick = () => {
+    dispatch({
+      type: "EDIT_POST",
+      id: props.post.id
+    });
+  };
+
+  const handleDeleteClick = () => {
+    dispatch({
+      type: "DELETE_POST",
+      id: props.post.id
+    });
+  };
+
+  return (
+    <>
+      <button
+        style={{ borderRadius: "10px" }}
+        onClick={handleEditClick}
+      >
+        Edit
+      </button>
+      <button
+        style={{ borderRadius: "10px", backgroundColor: "red" }}
+        onClick={handleDeleteClick}
+      >
+        Delete
+      </button>
+    </>
+  );
+};
+
+export default Post;
