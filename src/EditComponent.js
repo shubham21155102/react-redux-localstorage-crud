@@ -13,6 +13,7 @@ class EditComponent extends Component {
     const pinCode = this.getPincode.value;
     const country = this.getCountry.value;
     // const gender = this.getGender.value;
+    console.log(this)
 
     const data = {
       name,
@@ -27,7 +28,9 @@ class EditComponent extends Component {
       // gender,
       editing: false
     };
-    this.props.dispatch({ type: "UPDATE", id: this.props.post.id, data: data });
+    console.log(data)
+    this.props.dispatch({ type: "UPDATE", id: this.props.post.id, data });
+    // this.props.dispatch({ type: "UPDATE", id: this.props.post.id, data: data });
   };
 
   render() {
