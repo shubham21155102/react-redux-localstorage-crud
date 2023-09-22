@@ -10,7 +10,6 @@ const Post = (props) => {
       id: props.post.id
     });
   };
-
   const handleDeleteClick = () => {
     dispatch({
       type: "DELETE_POST",
@@ -26,12 +25,12 @@ const Post = (props) => {
       >
         Update
       </button>
-      <button
+      {/* <button
         style={{ borderRadius: "10px", backgroundColor: "red" }}
         onClick={handleDeleteClick}
       >
         Delete
-      </button>
+      </button> */}
     </>
   );
 };

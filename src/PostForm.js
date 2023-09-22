@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect,useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 // import "./styles/main.module.css";
 import "./styles/bootstrap.module.css"
 import "./styles/hello.module.css"
 const PostForm = (props) => {
+  const dispatch=useDispatch()
   const [posts, setPosts] = useState([]);
   const getName = useRef(null);
   const getEmail = useRef(null);

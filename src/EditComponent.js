@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
-import { connect } from "react-redux";
+import { connect,useDispatch } from "react-redux";
 
 const EditComponent = (props) => {
+  
+  
   const getName = useRef(null);
   const getEmail = useRef(null);
   const getPhone = useRef(null);
@@ -11,18 +13,18 @@ const EditComponent = (props) => {
   const getState = useRef(null);
   const getPincode = useRef(null);
   const getCountry = useRef(null);
-
   const handleEdit = (e) => {
     e.preventDefault();
-    const name = getName.current.value;
-    const email = getEmail.current.value;
-    const address = getAddress.current.value;
-    const streetAddress = getStreetAddress.current.value;
-    const phone = getPhone.current.value;
-    const city = getCity.current.value;
-    const state = getState.current.value;
-    const pinCode = getPincode.current.value;
-    const country = getCountry.current.value;
+    console.log(initialValues.name)
+    const name = getName.current.value 
+    const email = getEmail.current.value 
+    const address = getAddress.current.value 
+    const streetAddress = getStreetAddress.current.value 
+    const phone = getPhone.current.value 
+    const city = getCity.current.value 
+    const state = getState.current.value 
+    const pinCode = getPincode.current.value 
+    const country = getCountry.current.value 
 
     const data = {
       name,
@@ -47,6 +49,7 @@ const EditComponent = (props) => {
           ref={getName}
           required
           type="text"
+          // value={name}
           placeholder="Name"
         />
         <br />
