@@ -13,28 +13,34 @@ const AllPost = (props) => {
       id: props.post.id,
     });
   };
-
   useEffect(() => {
-    // Load data from local storage when the component mounts
     const savedPosts = localStorage.getItem("posts");
-
-    // Parse the local storage data or initialize as an empty array
     const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-
-    // Combine the parsed data with datas if datas are not already present
-    if (parsedPosts.length === 0) {
-      localStorage.setItem("posts", JSON.stringify(datas));
-      props.dispatch({
-        type: "LOAD_POSTS",
-        posts: datas,
-      });
-    } else {
-      props.dispatch({
-        type: "LOAD_POSTS",
-        posts: parsedPosts,
-      });
-    }
+  
+    props.dispatch({
+      type: "LOAD_POSTS",
+      posts: parsedPosts,
+    });
   }, []);
+  // useEffect(() => {
+  //   const savedPosts = localStorage.getItem("posts");
+
+  //   const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+
+ 
+  //   if (parsedPosts.length === 0) {
+  //     localStorage.setItem("posts", JSON.stringify(datas));
+  //     props.dispatch({
+  //       type: "LOAD_POSTS",
+  //       posts: datas,
+  //     });
+  //   } else {
+  //     props.dispatch({
+  //       type: "LOAD_POSTS",
+  //       posts: parsedPosts,
+  //     });
+  //   }
+  // }, []);
 
   const totalCount = props.posts.length; // Calculate the total count
 
