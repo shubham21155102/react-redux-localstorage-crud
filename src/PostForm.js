@@ -1,11 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
-import { connect,useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 // import "./styles/main.module.css";
 import "./styles/bootstrap.module.css"
 import "./styles/hello.module.css"
 const PostForm = (props) => {
-  const dispatch=useDispatch()
+  const [ml, setMl] = useState(false)
+  const [genderi, setGender] = useState('Male');
+  const [fm, setFm] = useState(false);
+  const genderInput = () => {
+    if (ml) {
+      setGender("Male")
+    }
+    else if (fm) {
+      getGender("Female")
+    }
+  }
+  const dispatch = useDispatch()
   const [posts, setPosts] = useState([]);
   const getName = useRef(null);
   const getEmail = useRef(null);
@@ -37,7 +48,7 @@ const PostForm = (props) => {
     getState.current.value = "";
     getPincode.current.value = "";
     getCountry.current.value = "";
-    getGender.current.value = "";
+    setGender("");
     getHobbyReading.current.checked = false;
     getHobbySports.current.checked = false;
     getHobbyMusic.current.checked = false;
@@ -66,7 +77,7 @@ const PostForm = (props) => {
     const state = getState.current.value;
     const pinCode = getPincode.current.value;
     const country = getCountry.current.value;
-    const gender = getGender.current.value;
+    const gender = genderi;
 
     const data = {
       id: uuidv4(),
@@ -84,7 +95,7 @@ const PostForm = (props) => {
       hobbies,
       editing: false
     };
-
+    console.log(data)
     setPosts((prevPosts) => [...prevPosts, data]);
 
     // Save the updated data to local storage
@@ -104,16 +115,16 @@ const PostForm = (props) => {
       <section >
         <div
           className="container"
-          style={{backgroundColor:"white",maxWidth:"600px",border:"1px solid black",borderRadius:"20px",margin:"30px auto" }}
+          style={{ backgroundColor: "white", maxWidth: "600px", border: "1px solid black", borderRadius: "20px", margin: "30px auto" }}
         >
           <form
             onSubmit={handleSubmit}
             id="employeeForm"
             className="needs-validation"
-            style={{textAlign:"left",margin:"25px"}}
-            
+            style={{ textAlign: "left", margin: "25px" }}
+
           >
-            <label style={{textAlign:"left"}}>Name</label>
+            <label style={{ textAlign: "left" }}>Name</label>
             <div className="form-group">
 
               <input
@@ -204,34 +215,57 @@ const PostForm = (props) => {
             <div className="form-group">
               <fieldset className="form-group">
                 <h6 className="form-legend">Gender</h6>
-                <div className="form-check"><input type="radio" name="gender" value="male" id="male" ref={getGender}
-                  className="form-check-input" /><label for="male" className="form-check-label">Male</label>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    id="male"
+                    checked={genderi === "Male"}
+                    onChange={() => setGender("Male")}
+                    className="form-check-input"
+                  />
+                  <label htmlFor="male" className="form-check-label">
+                    Male
+                  </label>
                 </div>
-                <div className="form-check"><input type="radio" name="gender" value="female" id="female" ref={getGender}
-                  className="form-check-input" /><label for="female" className="form-check-label">Female</label>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    id="female"
+                    checked={genderi === "Female"}
+                    onChange={() => setGender("Female")}
+                    className="form-check-input"
+                  />
+                  <label htmlFor="female" className="form-check-label">
+                    Female
+                  </label>
                 </div>
               </fieldset>
+
             </div>
             <div className="form-group">
-                        <fieldset className="form-group">
-                            <h6 className="form-legend">Hobbies</h6>
-                            <div className="form-check"><input type="checkbox" name="hobbies" value="swimming" id="swimming"  ref={getHobbyReading}
-                                    className="form-check-input"/><label for="swimming"
-                                    className="form-check-label">Swimming</label></div>
-                            <div className="form-check"><input type="checkbox" name="hobbies" value="singing" id="singing"  ref={getHobbySports}
-                                    className="form-check-input"/><label for="singing"
-                                    className="form-check-label">Singing</label></div>
-                            <div className="form-check"><input type="checkbox" name="hobbies" value="writing" id="writing"  ref={getHobbyMusic}
-                                    className="form-check-input"/><label for="writing"
-                                    className="form-check-label">Writing</label></div>
-                        </fieldset>
-                    </div>
-                    
-    
-                  
+              <fieldset className="form-group">
+                <h6 className="form-legend">Hobbies</h6>
+                <div className="form-check"><input type="checkbox" name="hobbies" value="swimming" id="swimming" ref={getHobbyReading}
+                  className="form-check-input" /><label for="swimming"
+                    className="form-check-label">Swimming</label></div>
+                <div className="form-check"><input type="checkbox" name="hobbies" value="singing" id="singing" ref={getHobbySports}
+                  className="form-check-input" /><label for="singing"
+                    className="form-check-label">Singing</label></div>
+                <div className="form-check"><input type="checkbox" name="hobbies" value="writing" id="writing" ref={getHobbyMusic}
+                  className="form-check-input" /><label for="writing"
+                    className="form-check-label">Writing</label></div>
+              </fieldset>
+            </div>
+
+
+
             <div className="form-group">
               <button onClick={handleReset} className="form-control btn btn-warning bg-primary text-white" >Reset</button>  </div>
-              <div className="form-group">  <button type="submit" class="form-control btn btn-danger" >Submit</button>
+            <div className="form-group">  <button type="submit" class="form-control btn btn-danger" >Submit</button>
             </div>
           </form>
         </div>
