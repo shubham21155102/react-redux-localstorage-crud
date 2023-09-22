@@ -11,7 +11,7 @@ const properElements = (props) => {
         localStorage.removeItem(key);
     }
     useEffect(() => {
-        // Update the gender when ml or fm changes
+    
         if (ml) {
             setGender("Male");
         } else if (fm) {
@@ -38,7 +38,7 @@ const properElements = (props) => {
 
     const handleEditClick = () => {
         setEditing(true);
-        setMl(entry.gender === "Male"); // Set ml and fm based on the entry.gender
+        setMl(entry.gender === "Male"); 
         setFm(entry.gender === "Female");
 
     };
@@ -54,7 +54,7 @@ const properElements = (props) => {
         if (getHobbyMusic.current.checked) {
             hobbies.push("Music");
         }
-        // setSelectedHobbies(hobbies); 
+        
         console.log(hobbies)
         const postIdToUpdate = entry.id;
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
@@ -77,9 +77,9 @@ const properElements = (props) => {
         console.log(indexToUpdate)
         console.log(postIdToUpdate)
         if (indexToUpdate !== -1) {
-            // Update the data for the found post
+         
             posts[indexToUpdate] = {
-                ...posts[indexToUpdate], // Preserve existing properties
+                ...posts[indexToUpdate],
                 name: getName.current.value,
                 email: getEmail.current.value,
                 phone: getPhone.current.value,
@@ -224,11 +224,11 @@ const properElements = (props) => {
                                     name="gender"
                                     value="male"
                                     id="male"
-                                    checked={ml} // Use checked to determine if this radio button should be selected
+                                    checked={ml} 
                                     onChange={() => {
                                         setMl(true);
                                         setFm(false);
-                                        setGender("Male"); // Update the gender state
+                                        setGender("Male"); 
                                     }}
                                     className="form-check-input"
                                 />
@@ -240,11 +240,11 @@ const properElements = (props) => {
                                     name="gender"
                                     value="female"
                                     id="female"
-                                    checked={fm} // Use checked to determine if this radio button should be selected
+                                    checked={fm} 
                                     onChange={() => {
                                         setFm(true);
                                         setMl(false);
-                                        setGender("Female"); // Update the gender state
+                                        setGender("Female");
                                     }}
                                     className="form-check-input"
                                 />

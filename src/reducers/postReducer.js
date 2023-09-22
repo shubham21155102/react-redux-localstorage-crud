@@ -23,13 +23,13 @@ const postReducer = (state = [], action) => {
               state: action.data.state,
               country: action.data.country,
               pinCode: action.data.pinCode,
-              // gender: action.data.gender,
+              
               editing: !post.editing
             };
           } else return post;
         });
     case "LOAD_POSTS":
-      return action.posts; // Replace the state with the loaded posts
+      return action.posts; 
     default:
       return state;
   }

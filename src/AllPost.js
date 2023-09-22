@@ -16,34 +16,16 @@ const AllPost = (props) => {
 useEffect(() => {
   const savedPosts = localStorage.getItem("posts");
   const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-  const combinedPosts = [...parsedPosts, ...datas]; // Combine local storage and demo data
+  console.log(savedPosts)
+  const combinedPosts = [...datas,...parsedPosts]; 
 
   props.dispatch({
     type: "LOAD_POSTS",
     posts: combinedPosts,
   });
 }, []);
-  // useEffect(() => {
-  //   const savedPosts = localStorage.getItem("posts");
 
-  //   const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-
- 
-  //   if (parsedPosts.length === 0) {
-  //     localStorage.setItem("posts", JSON.stringify(datas));
-  //     props.dispatch({
-  //       type: "LOAD_POSTS",
-  //       posts: datas,
-  //     });
-  //   } else {
-  //     props.dispatch({
-  //       type: "LOAD_POSTS",
-  //       posts: parsedPosts,
-  //     });
-  //   }
-  // }, []);
-
-  const totalCount = props.posts.length; // Calculate the total count
+  const totalCount = props.posts.length; 
 
   return (
     <div>
