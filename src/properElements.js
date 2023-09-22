@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect, useDispatch } from "react-redux";
+import datas from './samples';
 const properElements = (props) => {
     const entry = props.post;
     const [ml, setMl] = useState(false)
@@ -17,7 +18,7 @@ const properElements = (props) => {
             setGender("Female");
         }
     }, [ml, fm]);
-   
+
     const [editing, setEditing] = useState(false);
     const dispatch = useDispatch()
     const getName = useRef(entry.name);
@@ -34,7 +35,7 @@ const properElements = (props) => {
     const getHobbyReading = useRef(null);
     const getHobbySports = useRef(null);
     const getHobbyMusic = useRef(null);
-    // console.log(getHobbies)
+
     const handleEditClick = () => {
         setEditing(true);
         setMl(entry.gender === "Male"); // Set ml and fm based on the entry.gender
@@ -45,19 +46,19 @@ const properElements = (props) => {
 
         const hobbies = [];
         if (getHobbyReading.current.checked) {
-          hobbies.push("Reading");
+            hobbies.push("Reading");
         }
         if (getHobbySports.current.checked) {
-          hobbies.push("Sports");
+            hobbies.push("Sports");
         }
         if (getHobbyMusic.current.checked) {
-          hobbies.push("Music");
+            hobbies.push("Music");
         }
-        setSelectedHobbies(hobbies); 
+        // setSelectedHobbies(hobbies); 
         console.log(hobbies)
         const postIdToUpdate = entry.id;
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
-        const indexToUpdate = posts.findIndex((post) => post.id === postIdToUpdate);
+        console.log(posts)
         const updatedData = {
             name: getName.current.value,
             email: getEmail.current.value,
@@ -71,7 +72,10 @@ const properElements = (props) => {
             gender: gender,
             hobbies: hobbies,
         };
+        const indexToUpdate = posts.findIndex((post) => post.id === postIdToUpdate);
         console.log(updatedData)
+        console.log(indexToUpdate)
+        console.log(postIdToUpdate)
         if (indexToUpdate !== -1) {
             // Update the data for the found post
             posts[indexToUpdate] = {
@@ -85,18 +89,23 @@ const properElements = (props) => {
                 state: getState.current.value,
                 pinCode: getPincode.current.value,
                 country: getCountry.current.value,
-                gender: gender
+                gender: gender,
+                hobbies:hobbies
 
             };
+            console.log(posts[indexToUpdate])
             localStorage.setItem('posts', JSON.stringify(posts));
 
-            props.dispatch({ type: 'UPDATE', id: props.post.id, data: updatedData });
+            
+
+    props.dispatch({ type: 'UPDATE', id: entry.id, data: updatedData });
 
         }
+     
         setEditing(false);
     };
-  
-    
+
+
     return (
         <>
             <tr key={props.key} style={{ backgroundColor: "white" }} >
@@ -249,18 +258,17 @@ const properElements = (props) => {
                 <td>
                     {editing ? (
                         <>
-                        <fieldset className="form-group">
-                <h6 className="form-legend">Hobbies</h6>
-                <div className="form-check"><input type="checkbox" name="hobbies" value="swimming" id="swimming" ref={getHobbyReading}
-                  className="form-check-input" /><label for="swimming"
-                    className="form-check-label">Swimming</label></div>
-                <div className="form-check"><input type="checkbox" name="hobbies" value="singing" id="singing" ref={getHobbySports}
-                  className="form-check-input" /><label for="singing"
-                    className="form-check-label">Singing</label></div>
-                <div className="form-check"><input type="checkbox" name="hobbies" value="writing" id="writing" ref={getHobbyMusic}
-                  className="form-check-input" /><label for="writing"
-                    className="form-check-label">Writing</label></div>
-              </fieldset>
+                            <fieldset className="form-group">
+                                <div className="form-check"><input type="checkbox" name="hobbies" value="swimming" id="swimming" ref={getHobbyReading}
+                                    className="form-check-input" /><label for="swimming"
+                                        className="form-check-label">Reading</label></div>
+                                <div className="form-check"><input type="checkbox" name="hobbies" value="singing" id="singing" ref={getHobbySports}
+                                    className="form-check-input" /><label for="singing"
+                                        className="form-check-label">Sports</label></div>
+                                <div className="form-check"><input type="checkbox" name="hobbies" value="writing" id="writing" ref={getHobbyMusic}
+                                    className="form-check-input" /><label for="writing"
+                                        className="form-check-label">Music</label></div>
+                            </fieldset>
                         </>
                     ) : (
                         entry.hobbies.join(', ')
