@@ -15,7 +15,7 @@ const AllPost = (props) => {
   };
   useEffect(() => {
     const savedPosts = localStorage.getItem("posts");
-    const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+    const parsedPosts = savedPosts;
     const combinedPosts = [...parsedPosts, ...datas]; // Combine local storage and demo data
   
     props.dispatch({
