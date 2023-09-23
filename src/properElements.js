@@ -77,7 +77,7 @@ const properElements = (props) => {
         console.log(updatedData)
         console.log(indexToUpdate)
         console.log(postIdToUpdate)
-        if (entry.id > 0 && entry.id < 20) {
+        if (entry.id > 0 && entry.id <= 20) {
             console.log(entry);
 
             entry.name = getName.current.value;
@@ -344,12 +344,7 @@ const properElements = (props) => {
                                     const updatedPosts = posts.filter((post) => post.id !== entry.id);
                                     localStorage.setItem('posts', JSON.stringify(updatedPosts));
 
-                                    if (entry.id > 0 && entry.id < 20) {
-
-
-
-
-
+                                    if (entry.id > 0 && entry.id <= 20) {
                                         console.log(entry.id)
                                         console.log(sessionStorage.getItem(entry.id))
                                         sessionStorage.removeItem(entry.id);

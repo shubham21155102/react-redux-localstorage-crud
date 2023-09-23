@@ -19,26 +19,28 @@ const AllPost = (props) => {
         try {
           const response = await axios.get("https://my-json-server.typicode.com/shubham21155102/demo/datas");
           console.log(response.data);
-          response.data.map((e)=>{
+          response.data.map((e) => {
             sessionStorage.setItem(e.id, JSON.stringify(e));
           })
           const check = sessionStorage.getItem("posts");
           const parsedCheck = check ? JSON.parse(check) : [];
           if (parsedCheck.length === 0)
-            sessionStorage.setItem("posts", JSON.stringify(response.data));
+            // sessionStorage.setItem("posts", JSON.stringify(response.data));
+          console.log("d")
           else
             console.log("already data in it");
 
           const savedPosts = localStorage.getItem("posts");
           const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-          for(let i=0;i<20;i++){
-            for(let i=0;i<20;i++){
-              if(sessionStorage.getItem(i+1)){
-              const data = JSON.parse(sessionStorage.getItem(i+1));
-              parsedPosts.push(data);}
+
+          for (let i = 0; i < 20; i++) {
+            if (sessionStorage.getItem(i + 1)) {
+              const data = JSON.parse(sessionStorage.getItem(i + 1));
+              parsedPosts.push(data);
             }
+
           }
-          const temporary = JSON.parse(sessionStorage.getItem("posts"));
+          // const temporary = JSON.parse(sessionStorage.getItem("posts"));
           // const combinedPosts = [...temporary, ...parsedPosts];
 
           props.dispatch({
@@ -57,10 +59,11 @@ const AllPost = (props) => {
         const savedPosts = localStorage.getItem("posts");
         const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
         const temporary = JSON.parse(sessionStorage.getItem("posts"));
-        for(let i=0;i<20;i++){
-          if(sessionStorage.getItem(i+1)){
-          const data = JSON.parse(sessionStorage.getItem(i+1));
-          parsedPosts.push(data);}
+        for (let i = 0; i < 20; i++) {
+          if (sessionStorage.getItem(i + 1)) {
+            const data = JSON.parse(sessionStorage.getItem(i + 1));
+            parsedPosts.push(data);
+          }
         }
         // const combinedPosts = [...temporary, ...parsedPosts];
 
