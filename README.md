@@ -75,7 +75,7 @@ This React project creates a user data form with various fields, including Name,
 }
 }
 ```
-**Deleting Data**
+**Deleting Data Logic**
 
 ```javascript
 onClick={() => {
@@ -95,4 +95,92 @@ onClick={() => {
   }
   deleteItemFromLocalStorage(entry.id);
 }}
+```
+**Editingn Data Logic**
+```javascript
+ const handleUpdateClick = () => {
+
+
+        const hobbies = [];
+        if (getHobbyReading.current.checked) {
+            hobbies.push("Reading");
+        }
+        if (getHobbySports.current.checked) {
+            hobbies.push("Sports");
+        }
+        if (getHobbyMusic.current.checked) {
+            hobbies.push("Music");
+        }
+
+        console.log(hobbies)
+        const postIdToUpdate = entry.id;
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        console.log(posts)
+        const updatedData = {
+            name: getName.current.value,
+            email: getEmail.current.value,
+            phone: getPhone.current.value,
+            address: getAddress.current.value,
+            streetAddress: getStreetAddress.current.value,
+            city: getCity.current.value,
+            state: getState.current.value,
+            pinCode: getPincode.current.value,
+            country: getCountry.current.value,
+            gender: gender,
+            hobbies: hobbies,
+        };
+        const indexToUpdate = posts.findIndex((post) => post.id === postIdToUpdate);
+        console.log(updatedData)
+        console.log(indexToUpdate)
+        console.log(postIdToUpdate)
+        if (entry.id > 0 && entry.id <= 20) {
+            console.log(entry);
+
+            entry.name = getName.current.value;
+            entry.email = getEmail.current.value;
+            entry.phone = getPhone.current.value;
+            entry.address = getAddress.current.value;
+            entry.streetAddress = getStreetAddress.current.value;
+            entry.city = getCity.current.value;
+            entry.state = getState.current.value;
+            entry.pinCode = getPincode.current.value;
+            entry.country = getCountry.current.value;
+            entry.gender = gender;
+            entry.hobbies = hobbies;
+
+
+            sessionStorage.setItem(entry.id, JSON.stringify(entry));
+
+            console.log(entry);
+            console.log('Data updated and saved in session storage.');
+        }
+        if (indexToUpdate !== -1) {
+
+            posts[indexToUpdate] = {
+                ...posts[indexToUpdate],
+                name: getName.current.value,
+                email: getEmail.current.value,
+                phone: getPhone.current.value,
+                address: getAddress.current.value,
+                streetAddress: getStreetAddress.current.value,
+                city: getCity.current.value,
+                state: getState.current.value,
+                pinCode: getPincode.current.value,
+                country: getCountry.current.value,
+                gender: gender,
+                hobbies: hobbies
+
+            };
+            console.log(posts[indexToUpdate])
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+
+
+            props.dispatch({ type: 'UPDATE', id: entry.id, data: updatedData });
+
+        }
+
+        setEditing(false);
+    };
+```
 
