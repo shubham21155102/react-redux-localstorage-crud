@@ -1,35 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ProperElements from "./properElements";
-import { useDispatch } from "react-redux";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
-
 import "./styles/hello.module.css";
 import axios from "axios";
 const AllPost = (props) => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      const check = sessionStorage.getItem("posts");
-      const parsedCheck = check ? JSON.parse(check) : [];
-      if (parsedCheck.length === 0) {
+      if (sessionStorage.length === 0) {
         try {
           const response = await axios.get("https://my-json-server.typicode.com/shubham21155102/demo/datas");
           console.log(response.data);
           response.data.map((e) => {
             sessionStorage.setItem(e.id, JSON.stringify(e));
           })
-          const check = sessionStorage.getItem("posts");
-          const parsedCheck = check ? JSON.parse(check) : [];
-          if (parsedCheck.length === 0)
-            // sessionStorage.setItem("posts", JSON.stringify(response.data));
-          console.log("d")
-          else
-            console.log("already data in it");
-
           const savedPosts = localStorage.getItem("posts");
           const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
 
@@ -38,10 +24,7 @@ const AllPost = (props) => {
               const data = JSON.parse(sessionStorage.getItem(i + 1));
               parsedPosts.push(data);
             }
-
           }
-          // const temporary = JSON.parse(sessionStorage.getItem("posts"));
-          // const combinedPosts = [...temporary, ...parsedPosts];
 
           props.dispatch({
             type: "LOAD_POSTS",
@@ -58,14 +41,12 @@ const AllPost = (props) => {
         setLoading(false);
         const savedPosts = localStorage.getItem("posts");
         const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-        const temporary = JSON.parse(sessionStorage.getItem("posts"));
         for (let i = 0; i < 20; i++) {
           if (sessionStorage.getItem(i + 1)) {
             const data = JSON.parse(sessionStorage.getItem(i + 1));
             parsedPosts.push(data);
           }
         }
-        // const combinedPosts = [...temporary, ...parsedPosts];
 
         props.dispatch({
           type: "LOAD_POSTS",
