@@ -17,7 +17,7 @@ const AllPost = (props) => {
       const parsedCheck = check ? JSON.parse(check) : [];
       if (parsedCheck.length === 0) {
         try {
-          const response = await axios.get("http://my-json-server.typicode.com/shubham21155102/demo/datas");
+          const response = await axios.get("https://my-json-server.typicode.com/shubham21155102/demo/datas");
           console.log(response.data);
           response.data.map((e)=>{
             sessionStorage.setItem(e.id, JSON.stringify(e));
