@@ -60,7 +60,7 @@ This React project creates a user data form with various fields, including Name,
 - **Project Challenge:** Despite its seemingly simple nature, this project poses challenges that require careful consideration.
  ### Redux - React-Redux
  ```json{
-   import datas from "../samples";
+ ```  import datas from "../samples";
  const postReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_POST":
@@ -98,5 +98,6 @@ This React project creates a user data form with various fields, including Name,
   }
 };
 
-export default postReducer;
+export default postReducer;}
+```
 }```
