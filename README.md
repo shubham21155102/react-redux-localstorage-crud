@@ -75,7 +75,7 @@ This React project creates a user data form with various fields, including Name,
 }
 }
 ```
-** Deleting Datas **
+**Deleting Datas**
 ``` json {
     onClick={() => {
   dispatch({
