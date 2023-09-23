@@ -77,7 +77,9 @@ This React project creates a user data form with various fields, including Name,
 ```
 **Deleting Datas**
 ``` json {
-    onClick={() => {
+{
+  // JavaScript Code Example for Deleting Data
+onClick={() => {
   dispatch({
     type: 'DELETE_POST',
     id: entry.id,
@@ -88,12 +90,12 @@ This React project creates a user data form with various fields, including Name,
   localStorage.setItem('posts', JSON.stringify(updatedPosts));
 
   if (entry.id > 0 && entry.id <= 20) {
-    console.log(entry.id)
-    console.log(sessionStorage.getItem(entry.id))
+    console.log(entry.id);
+    console.log(sessionStorage.getItem(entry.id));
     sessionStorage.removeItem(entry.id);
   }
   deleteItemFromLocalStorage(entry.id);
 }}
-
 }
+     }
 ```
