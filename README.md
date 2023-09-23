@@ -75,10 +75,9 @@ This React project creates a user data form with various fields, including Name,
 }
 }
 ```
-**Deleting Datas**
-``` json {
-{
-  // JavaScript Code Example for Deleting Data
+**Deleting Data**
+
+```javascript
 onClick={() => {
   dispatch({
     type: 'DELETE_POST',
@@ -96,6 +95,4 @@ onClick={() => {
   }
   deleteItemFromLocalStorage(entry.id);
 }}
-}
-     }
-```
+
