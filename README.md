@@ -182,6 +182,119 @@ onClick={() => {
 
         setEditing(false);
     };
+
+```
+**Redux Logic**
+   ```javascript
+import datas from "../samples";
+const postReducer = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_POST":
+      return state.concat([action.data]);
+    case "DELETE_POST":
+      return state.filter((post) => post.id !== action.id);
+    case "EDIT_POST":
+      return state.map((post) =>
+        post.id === action.id ? { ...post, editing: !post.editing } : post
+      );
+      case "UPDATE":
+        return state.map((post) => {
+          if (post.id === action.id) {
+            return {
+              ...post,
+              name: action.data.name,
+              email: action.data.email,
+              phone: action.data.phone,
+              address: action.data.address,
+              streetAddress: action.data.streetAddress,
+              city: action.data.city,
+              state: action.data.state,
+              country: action.data.country,
+              pinCode: action.data.pinCode,
+              gender:action.data.gender,
+              hobbies:action.data.hobbies,
+              editing: !post.editing
+            };
+          } else return post;
+        });
+    case "LOAD_POSTS":
+      return action.posts; 
+    default:
+      return state;
+  }
+};
+
+export default postReducer;
+
+```
+**Data Fetching and saving**
+
+```javascript
+  useEffect(() => {
+    const fetchData = async () => {
+      const check = sessionStorage.getItem("posts");
+      const parsedCheck = check ? JSON.parse(check) : [];
+      if (parsedCheck.length === 0) {
+        try {
+          const response = await axios.get("https://my-json-server.typicode.com/shubham21155102/demo/datas");
+          console.log(response.data);
+          response.data.map((e) => {
+            sessionStorage.setItem(e.id, JSON.stringify(e));
+          })
+          const check = sessionStorage.getItem("posts");
+          const parsedCheck = check ? JSON.parse(check) : [];
+          if (parsedCheck.length === 0)
+            // sessionStorage.setItem("posts", JSON.stringify(response.data));
+          console.log("d")
+          else
+            console.log("already data in it");
+
+          const savedPosts = localStorage.getItem("posts");
+          const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+
+          for (let i = 0; i < 20; i++) {
+            if (sessionStorage.getItem(i + 1)) {
+              const data = JSON.parse(sessionStorage.getItem(i + 1));
+              parsedPosts.push(data);
+            }
+
+          }
+          // const temporary = JSON.parse(sessionStorage.getItem("posts"));
+          // const combinedPosts = [...temporary, ...parsedPosts];
+
+          props.dispatch({
+            type: "LOAD_POSTS",
+            posts: parsedPosts,
+          });
+
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          setLoading(false);
+        }
+      }
+      else {
+        setLoading(false);
+        const savedPosts = localStorage.getItem("posts");
+        const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+        const temporary = JSON.parse(sessionStorage.getItem("posts"));
+        for (let i = 0; i < 20; i++) {
+          if (sessionStorage.getItem(i + 1)) {
+            const data = JSON.parse(sessionStorage.getItem(i + 1));
+            parsedPosts.push(data);
+          }
+        }
+        // const combinedPosts = [...temporary, ...parsedPosts];
+
+        props.dispatch({
+          type: "LOAD_POSTS",
+          posts: parsedPosts,
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
 ```
 **Sample JSON**
 ```json{
