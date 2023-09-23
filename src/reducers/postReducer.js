@@ -23,7 +23,8 @@ const postReducer = (state = [], action) => {
               state: action.data.state,
               country: action.data.country,
               pinCode: action.data.pinCode,
-              
+              gender:action.data.gender,
+              hobbies:action.data.hobbies,
               editing: !post.editing
             };
           } else return post;

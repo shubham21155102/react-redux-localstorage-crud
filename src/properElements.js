@@ -11,7 +11,7 @@ const properElements = (props) => {
         localStorage.removeItem(key);
     }
     useEffect(() => {
-    
+
         if (ml) {
             setGender("Male");
         } else if (fm) {
@@ -38,11 +38,12 @@ const properElements = (props) => {
 
     const handleEditClick = () => {
         setEditing(true);
-        setMl(entry.gender === "Male"); 
+        setMl(entry.gender === "Male");
         setFm(entry.gender === "Female");
 
     };
     const handleUpdateClick = () => {
+
 
         const hobbies = [];
         if (getHobbyReading.current.checked) {
@@ -54,7 +55,7 @@ const properElements = (props) => {
         if (getHobbyMusic.current.checked) {
             hobbies.push("Music");
         }
-        
+
         console.log(hobbies)
         const postIdToUpdate = entry.id;
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
@@ -76,8 +77,29 @@ const properElements = (props) => {
         console.log(updatedData)
         console.log(indexToUpdate)
         console.log(postIdToUpdate)
+        if (entry.id > 0 && entry.id < 20) {
+            console.log(entry);
+
+            entry.name = getName.current.value;
+            entry.email = getEmail.current.value;
+            entry.phone = getPhone.current.value;
+            entry.address = getAddress.current.value;
+            entry.streetAddress = getStreetAddress.current.value;
+            entry.city = getCity.current.value;
+            entry.state = getState.current.value;
+            entry.pinCode = getPincode.current.value;
+            entry.country = getCountry.current.value;
+            entry.gender = gender;
+            entry.hobbies = hobbies;
+
+
+            sessionStorage.setItem(entry.id, JSON.stringify(entry));
+
+            console.log(entry);
+            console.log('Data updated and saved in session storage.');
+        }
         if (indexToUpdate !== -1) {
-         
+
             posts[indexToUpdate] = {
                 ...posts[indexToUpdate],
                 name: getName.current.value,
@@ -90,18 +112,18 @@ const properElements = (props) => {
                 pinCode: getPincode.current.value,
                 country: getCountry.current.value,
                 gender: gender,
-                hobbies:hobbies
+                hobbies: hobbies
 
             };
             console.log(posts[indexToUpdate])
             localStorage.setItem('posts', JSON.stringify(posts));
 
-            
 
-    props.dispatch({ type: 'UPDATE', id: entry.id, data: updatedData });
+
+            props.dispatch({ type: 'UPDATE', id: entry.id, data: updatedData });
 
         }
-     
+
         setEditing(false);
     };
 
@@ -224,11 +246,11 @@ const properElements = (props) => {
                                     name="gender"
                                     value="male"
                                     id="male"
-                                    checked={ml} 
+                                    checked={ml}
                                     onChange={() => {
                                         setMl(true);
                                         setFm(false);
-                                        setGender("Male"); 
+                                        setGender("Male");
                                     }}
                                     className="form-check-input"
                                 />
@@ -240,7 +262,7 @@ const properElements = (props) => {
                                     name="gender"
                                     value="female"
                                     id="female"
-                                    checked={fm} 
+                                    checked={fm}
                                     onChange={() => {
                                         setFm(true);
                                         setMl(false);
@@ -271,7 +293,18 @@ const properElements = (props) => {
                             </fieldset>
                         </>
                     ) : (
-                        entry.hobbies.join(', ')
+                        <>
+                            {Array.isArray(entry.hobbies) ? (
+
+                                entry.hobbies.join(', ')
+                            ) : (
+
+                                'Hobbies data is not an array'
+                            )}
+                        </>
+
+
+
                     )}
                 </td>
 
@@ -285,6 +318,8 @@ const properElements = (props) => {
                             <button
                                 style={{ borderRadius: '10px', backgroundColor: '#007bff' }}
                                 onClick={handleUpdateClick}
+
+
                             >
                                 Update
                             </button>
@@ -309,7 +344,16 @@ const properElements = (props) => {
                                     const updatedPosts = posts.filter((post) => post.id !== entry.id);
                                     localStorage.setItem('posts', JSON.stringify(updatedPosts));
 
-                                    // Call the deleteItemFromLocalStorage function
+                                    if (entry.id > 0 && entry.id < 20) {
+
+
+
+
+
+                                        console.log(entry.id)
+                                        console.log(sessionStorage.getItem(entry.id))
+                                        sessionStorage.removeItem(entry.id);
+                                    }
                                     deleteItemFromLocalStorage(entry.id);
                                 }
 

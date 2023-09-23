@@ -1,32 +1,94 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ProperElements from "./properElements";
 import { useDispatch } from "react-redux";
-import "./styles/hello.module.css";
-import datas from "./samples";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
+
+import "./styles/hello.module.css";
+import axios from "axios";
 const AllPost = (props) => {
   const dispatch = useDispatch();
-  const handleDeleteClick = () => {
-    dispatch({
-      type: "DELETE_POST",
-      id: props.post.id,
-    });
-  };
-useEffect(() => {
-  const savedPosts = localStorage.getItem("posts");
-  const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
-  console.log(savedPosts)
-  const combinedPosts = [...datas,...parsedPosts]; 
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      const check = sessionStorage.getItem("posts");
+      const parsedCheck = check ? JSON.parse(check) : [];
+      if (parsedCheck.length === 0) {
+        try {
+          const response = await axios.get("http://my-json-server.typicode.com/shubham21155102/demo/datas");
+          console.log(response.data);
+          response.data.map((e)=>{
+            sessionStorage.setItem(e.id, JSON.stringify(e));
+          })
+          const check = sessionStorage.getItem("posts");
+          const parsedCheck = check ? JSON.parse(check) : [];
+          if (parsedCheck.length === 0)
+            sessionStorage.setItem("posts", JSON.stringify(response.data));
+          else
+            console.log("already data in it");
 
-  props.dispatch({
-    type: "LOAD_POSTS",
-    posts: combinedPosts,
-  });
-}, []);
+          const savedPosts = localStorage.getItem("posts");
+          const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+          for(let i=0;i<20;i++){
+            for(let i=0;i<20;i++){
+              if(sessionStorage.getItem(i+1)){
+              const data = JSON.parse(sessionStorage.getItem(i+1));
+              parsedPosts.push(data);}
+            }
+          }
+          const temporary = JSON.parse(sessionStorage.getItem("posts"));
+          // const combinedPosts = [...temporary, ...parsedPosts];
 
-  const totalCount = props.posts.length; 
+          props.dispatch({
+            type: "LOAD_POSTS",
+            posts: parsedPosts,
+          });
 
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          setLoading(false);
+        }
+      }
+      else {
+        setLoading(false);
+        const savedPosts = localStorage.getItem("posts");
+        const parsedPosts = savedPosts ? JSON.parse(savedPosts) : [];
+        const temporary = JSON.parse(sessionStorage.getItem("posts"));
+        for(let i=0;i<20;i++){
+          if(sessionStorage.getItem(i+1)){
+          const data = JSON.parse(sessionStorage.getItem(i+1));
+          parsedPosts.push(data);}
+        }
+        // const combinedPosts = [...temporary, ...parsedPosts];
+
+        props.dispatch({
+          type: "LOAD_POSTS",
+          posts: parsedPosts,
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const totalCount = props.posts.length;
+  if (loading) {
+    return (
+      <>
+        <div className="loader-container" >
+          <div className="loader"></div>
+          <div className="loading-text">Loading...</div>
+          <Skeleton />
+          <Skeleton count={20} />
+
+        </div>
+      </>
+    )
+
+  }
   return (
     <div>
       <center style={{ backgroundColor: "blue", borderRadius: "10px" }}>

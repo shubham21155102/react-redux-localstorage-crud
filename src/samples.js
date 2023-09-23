@@ -1,6 +1,6 @@
 const datas = [
     {
-      "id": "1",
+      "id": 1,
       "createdAt": "2023-09-21",
       "name": "John Doe",
       "email": "johndoe@example.com",
@@ -15,7 +15,7 @@ const datas = [
       "hobbies": ["Reading", "Hiking"]
     },
     {
-      "id": "2",
+      "id": 2,
       "createdAt": "2023-09-20",
       "name": "Jane Smith",
       "email": "janesmith@example.com",
@@ -30,7 +30,7 @@ const datas = [
       "hobbies": ["Swimming", "Painting"]
     },
     {
-      "id": "3",
+      "id": 3,
       "createdAt": "2023-09-19",
       "name": "Bob Johnson",
       "email": "bob@example.com",
@@ -45,7 +45,7 @@ const datas = [
       "hobbies": ["Cooking", "Photography"]
     },
     {
-      "id": "4",
+      "id": 4,
       "createdAt": "2023-09-18",
       "name": "Alice Davis",
       "email": "alice@example.com",
@@ -60,7 +60,7 @@ const datas = [
       "hobbies": ["Running", "Chess"]
     },
     {
-      "id": "5",
+      "id": 5,
       "createdAt": "2023-09-17",
       "name": "Michael Wilson",
       "email": "michael@example.com",
@@ -75,7 +75,7 @@ const datas = [
       "hobbies": ["Painting", "Traveling"]
     },
     {
-      "id": "6",
+      "id": 6,
       "createdAt": "2023-09-16",
       "name": "Sarah Johnson",
       "email": "sarah@example.com",
@@ -90,7 +90,7 @@ const datas = [
       "hobbies": ["Reading", "Cycling"]
     },
     {
-      "id": "7",
+      "id": 7,
       "createdAt": "2023-09-15",
       "name": "David Lee",
       "email": "david@example.com",
@@ -105,7 +105,7 @@ const datas = [
       "hobbies": ["Hiking", "Gaming"]
     },
     {
-      "id": "8",
+      "id": 8,
       "createdAt": "2023-09-14",
       "name": "Maria Garcia",
       "email": "maria@example.com",
@@ -120,7 +120,7 @@ const datas = [
       "hobbies": ["Dancing", "Music"]
     },
     {
-      "id": "9",
+      "id": 9,
       "createdAt": "2023-09-13",
       "name": "Robert Brown",
       "email": "robert@example.com",
@@ -135,7 +135,7 @@ const datas = [
       "hobbies": ["Soccer", "Cooking"]
     },
     {
-      "id": "10",
+      "id": 10,
       "createdAt": "2023-09-12",
       "name": "Jennifer White",
       "email": "jennifer@example.com",
@@ -150,7 +150,7 @@ const datas = [
       "hobbies": ["Swimming", "Reading"]
     },
     {
-      "id": "11",
+      "id": 11,
       "createdAt": "2023-09-11",
       "name": "William Green",
       "email": "william@example.com",
@@ -165,7 +165,7 @@ const datas = [
       "hobbies": ["Golf", "Painting"]
     },
     {
-      "id": "12",
+      "id": 12,
       "createdAt": "2023-09-10",
       "name": "Linda Wilson",
       "email": "linda@example.com",
@@ -180,7 +180,7 @@ const datas = [
       "hobbies": ["Hiking", "Cooking"]
     },
     {
-      "id": "13",
+      "id": 13,
       "createdAt": "2023-09-09",
       "name": "James Anderson",
       "email": "james@example.com",
@@ -195,7 +195,7 @@ const datas = [
       "hobbies": ["Reading", "Photography"]
     },
     {
-      "id": "14",
+      "id": 14,
       "createdAt": "2023-09-08",
       "name": "Susan Miller",
       "email": "susan@example.com",
@@ -210,7 +210,7 @@ const datas = [
       "hobbies": ["Swimming", "Traveling"]
     },
     {
-      "id": "15",
+      "id": 15,
       "createdAt": "2023-09-07",
       "name": "Richard Moore",
       "email": "richard@example.com",
@@ -225,7 +225,7 @@ const datas = [
       "hobbies": ["Running", "Chess"]
     },
     {
-      "id": "16",
+      "id": 16,
       "createdAt": "2023-09-06",
       "name": "Karen Davis",
       "email": "karen@example.com",
@@ -240,7 +240,7 @@ const datas = [
       "hobbies": ["Cooking", "Gaming"]
     },
     {
-      "id": "17",
+      "id": 17,
       "createdAt": "2023-09-05",
       "name": "Daniel Johnson",
       "email": "daniel@example.com",
@@ -255,7 +255,7 @@ const datas = [
       "hobbies": ["Dancing", "Music"]
     },
     {
-      "id": "18",
+      "id": 18,
       "createdAt": "2023-09-04",
       "name": "Patricia Smith",
       "email": "patricia@example.com",
@@ -270,7 +270,7 @@ const datas = [
       "hobbies": ["Soccer", "Traveling"]
     },
     {
-      "id": "19",
+      "id": 19,
       "createdAt": "2023-09-03",
       "name": "Joseph Brown",
       "email": "joseph@example.com",
@@ -285,7 +285,7 @@ const datas = [
       "hobbies": ["Swimming", "Cycling"]
     },
     {
-      "id": "20",
+      "id": 20,
       "createdAt": "2023-09-02",
       "name": "Laura White",
       "email": "laura@example.com",
